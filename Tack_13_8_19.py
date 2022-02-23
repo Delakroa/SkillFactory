@@ -15,28 +15,27 @@
 '''
 
 tickets = int(input("Введите количество билетов: "))
-if tickets <= 0:
-    print("Минимальное количество билетов 1")
 
-results = sum([])
+results = []
 
-for price in range(1, tickets + 1):
+for ticket in range(1, tickets + 1):
     age = int(input("\nВведите возраст посетителей: "))
     if 0 <= age < 18:
-        price_1 = 0
-        results.append(price_1)
-        print(results)
+        results.append(0)
     elif 18 <= age <= 25:
-        price_2 = 990
-        results.append(price_2)
+        results.append(990)
     elif 25 < age <= 99:
-        price_3 = 1390
-        results.append(price_3)
+        results.append(1390)
     else:
         print("Введите корректный возраст!")
+
 if tickets > 3:
-    result = (((results * tickets) / 100) * 10)  # дополнительно получает 10% скидку на полную стоимость заказа.
-    print(f"Общая стоимость билетов: {result}")
+    result_1 = int(sum(results) - sum(results) / 10)  # 10% скидку на полную стоимость заказа.
+    print(f"Общая стоимость билетов: {result_1}")
+
+elif tickets <= 0:
+    print("Не верное количество билетов!")
+
 else:
-    result = (results * tickets)
-    print(f"Общая стоимость билетов: {result}")
+    result_2 = sum(results)
+    print(f"Общая стоимость билетов: {result_2}")
