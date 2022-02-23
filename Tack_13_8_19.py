@@ -43,7 +43,7 @@ try:
         print(f"Общая стоимость билетов: {result_1}")
 
     elif tickets <= 0:
-        print("Не верное количество билетов!")
+        print("Неверное количество билетов!")
 
     else:
         result_2 = sum(results)
