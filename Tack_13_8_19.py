@@ -14,28 +14,42 @@
 конференцию, то дополнительно получает 10% скидку на полную стоимость заказа.
 '''
 
-tickets = int(input("Введите количество билетов: "))
+try:
+    tickets = int(input("Введите количество билетов: "))
+
+except ValueError:
+    print("Ошибка ввода данных:\nПожалуйста введите кол-во билетов цифрами.")
+
+except NameError:
+    print("")
 
 results = []
 
-for ticket in range(1, tickets + 1):
-    age = int(input("\nВведите возраст посетителей: "))
-    if 0 <= age < 18:
-        results.append(0)
-    elif 18 <= age <= 25:
-        results.append(990)
-    elif 25 < age <= 99:
-        results.append(1390)
+try:
+    for ticket in range(1, tickets + 1):
+        age = int(input("\nВведите возраст посетителей: "))
+
+        if 0 <= age < 18:
+            results.append(0)
+        elif 18 <= age <= 25:
+            results.append(990)
+        elif 25 < age <= 99:
+            results.append(1390)
+        else:
+            print("Введите корректный возраст!")
+
+    if tickets > 3:
+        result_1 = int(sum(results) - sum(results) / 10)  # 10% скидку на полную стоимость заказа.
+        print(f"Общая стоимость билетов: {result_1}")
+
+    elif tickets <= 0:
+        print("Не верное количество билетов!")
+
     else:
-        print("Введите корректный возраст!")
+        result_2 = sum(results)
+        print(f"Общая стоимость билетов: {result_2}")
 
-if tickets > 3:
-    result_1 = int(sum(results) - sum(results) / 10)  # 10% скидку на полную стоимость заказа.
-    print(f"Общая стоимость билетов: {result_1}")
-
-elif tickets <= 0:
-    print("Не верное количество билетов!")
-
-else:
-    result_2 = sum(results)
-    print(f"Общая стоимость билетов: {result_2}")
+except NameError:
+    print("")
+except ValueError:
+    print("Ошибка ввода данных:\nПожалуйста введите возраст цифрами.")
