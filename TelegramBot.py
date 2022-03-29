@@ -23,16 +23,27 @@ def values(message: telebot.types.Message):
 
 @bot.message_handler(content_types=['text', ])
 def convert(message: telebot.types.Message):
-    values = message.text.split(' ')
+    try:
+        values = message.text.split(' ')
 
-    if len(values) != 3:
-        raise ConvertionException('Слишком много параметров.')
+        if len(values) != 3:
+            raise ConvertionException('Слишком много параметров.')
 
-    quote, base, amount = values
-    total_base = CryptoConverter.convert(quote, base, amount)
+        quote, base, amount = values
+        total_base = CryptoConverter.convert(quote, base, amount)
+    except ConvertionException as e:
+        bot.reply_to(message, f'Ошибка пользователя. \n {e}')
+    except Exception as e:
+        bot.reply_to(message, f'Не удалось обработать команду\n{e}')
+    else:
+        text = f'Цена {amount} {quote} в {base} - {total_base}'
+        bot.send_message(message.chat.id, text)
 
-    text = f'Цена {amount} {quote} в {base} - {total_base}'
-    bot.send_message(message.chat.id, text)
+
+# Бот постоянно работает
+print("Бот запущен")
+bot.polling()
+print("Бот отключен")
 
 
 # @bot.message_handler()
@@ -68,7 +79,3 @@ def convert(message: telebot.types.Message):
 #     bot.reply_to(message, 'Nice meme XDD')
 
 
-# Бот постоянно работает
-print("Бот запущен")
-bot.polling()
-print("Бот отключен")
