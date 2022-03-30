@@ -17,7 +17,8 @@ def start(message: telebot.types.Message):
 def help(message: telebot.types.Message):
     text = 'Чтобы начать работу введите команду боту в следующем формате: \n<имя валюты> ' \
            '<в какую перевести> ' \
-           '<количество переводимой валюты> \nУвидеть список всех доступных валют: /values'
+           '<количество переводимой валюты>\n (Пример: доллар рубль 1)' \
+           '\nУвидеть список всех доступных валют: /values'
     bot.reply_to(message, text)
 
 
@@ -44,7 +45,7 @@ def convert(message: telebot.types.Message):
     except Exception as e:
         bot.reply_to(message, f'Не удалось обработать команду\n{e}')
     else:
-        text = f'Цена {amount} {quote} в {base} - {total_base}'
+        text = f'Переводим {quote} в {base}\n{amount} {quote} = {total_base} {base}'
         bot.send_message(message.chat.id, text)
 
 
