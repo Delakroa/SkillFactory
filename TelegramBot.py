@@ -5,7 +5,15 @@ from extensions import ConvertionException, CryptoConverter
 bot = telebot.TeleBot(TOKEN)
 
 
-@bot.message_handler(commands=['start', 'help'])
+@bot.message_handler(commands=['start'])
+def start(message: telebot.types.Message):
+    text = 'Привет! Я Бот-Конвертер валют и я могу:  \n- Показать список доступных валют через команду /values \
+    \n- Вывести конвертацию валюты через команду <имя валюты> <в какую валюту перевести> <количество переводимой валюты>\n \
+- Напомнить, что я могу через команду /help'
+    bot.reply_to(message, text)
+
+
+@bot.message_handler(commands=['help'])
 def help(message: telebot.types.Message):
     text = 'Чтобы начать работу введите команду боту в следующем формате: \n<имя валюты> ' \
            '<в какую перевести> ' \
@@ -27,7 +35,7 @@ def convert(message: telebot.types.Message):
         values = message.text.split(' ')
 
         if len(values) != 3:
-            raise ConvertionException('Слишком много параметров.')
+            raise ConvertionException('Введите команду или 3 параметра')
 
         quote, base, amount = values
         total_base = CryptoConverter.get_price(quote, base, amount)
@@ -44,7 +52,6 @@ def convert(message: telebot.types.Message):
 print("Бот запущен")
 bot.polling()
 print("Бот отключен")
-
 
 # @bot.message_handler()
 # def echo_test(message: telebot.types.Message):
@@ -77,5 +84,3 @@ print("Бот отключен")
 # @bot.message_handler(content_types=['photo', ])
 # def say_lmao(message: telebot.types.Message):
 #     bot.reply_to(message, 'Nice meme XDD')
-
-
