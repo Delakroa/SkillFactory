@@ -1,6 +1,6 @@
 import telebot
 from config import keys, TOKEN
-from extensions import ConvertionException, CryptoConverter
+from extensions import ConvertionException, Exchange
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -39,7 +39,7 @@ def convert(message: telebot.types.Message):
             raise ConvertionException('Введите команду или 3 параметра')
 
         quote, base, amount = values
-        total_base = CryptoConverter.get_price(quote, base, amount)
+        total_base = Exchange.get_price(quote, base, amount)
     except ConvertionException as e:
         bot.reply_to(message, f'Ошибка пользователя. \n {e}')
     except Exception as e:
