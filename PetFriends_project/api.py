@@ -21,3 +21,18 @@ class PetFriends:
         except:
             result = res.text
         return status, result
+
+    def get_list_of_pets(self, auth_key, filter):
+        """Получить список домашних животных"""
+        headers = {'auth_key': auth_key}
+        filter = {'filter': filter}
+
+        res = requests.get(self.base_url + 'api/pets', headers=headers, params=filter)
+        status = res.status_code
+        result = ""
+        try:
+            result = res.json()
+        except:
+            result = res.text
+        return status, result
+
