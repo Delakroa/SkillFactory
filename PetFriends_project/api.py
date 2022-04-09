@@ -20,4 +20,4 @@ class PetFriends:
             result = res.json()
         except:
             result = res.text
-        return result, status
+        return status, result
