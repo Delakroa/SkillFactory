@@ -24,7 +24,7 @@ class PetFriends:
 
     def get_list_of_pets(self, auth_key, filter):
         """Получить список домашних животных"""
-        headers = {'auth_key': auth_key}
+        headers = {'auth_key': auth_key['key']}
         filter = {'filter': filter}
 
         res = requests.get(self.base_url + 'api/pets', headers=headers, params=filter)
