@@ -88,3 +88,21 @@ def test_successful_update_self_pet_info(name='Заенька', animal_type='л�
     else:
         # если список питомцев пустой, то выкидываем исключение с текстом об отсутствии своих питомцев
         raise Exception("Моих питомцев нет")
+
+
+def test_delete_self_pet_allpets():
+    """testing delete all pets"""
+    _, auth_key = pf.get_api_key(valid_email, valid_password)
+    _, pets = pf.get_list_of_pets(auth_key, '')
+    while True:
+        if len(pets['pets']) > 0:
+            pet_id = pets['pets'][0]['id']
+            status, _ = pf.delete_pet(auth_key, pet_id)
+            _, pets = pf.get_list_of_pets(auth_key, '')
+            assert status == 200
+            assert pet_id not in pets.values()
+        break
+    _, pets = pf.get_list_of_pets(auth_key, '')
+    status, result = pf.get_list_of_pets(auth_key, '')
+    assert status == 200
+    assert len(result['pets']) == 100
