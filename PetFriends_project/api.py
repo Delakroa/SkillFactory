@@ -13,7 +13,7 @@ class PetFriends:
 
     def get_api_key(self, email: str, password: str = ""):
         """Метод делает запрос к API сервера и возвращает статус запроса и результата в формате JSON
-        с уникальным ключём пользователя, найденного по указанным email и паролем"""
+        с уникальным ключом пользователя, найденного по указанным email и паролем"""
         headers = {
             'email': email,
             'password': password
@@ -24,7 +24,7 @@ class PetFriends:
         result = ""
         try:
             result = res.json()
-        except:
+        except json.decoder.JSONDecodeError:
             result = res.text
         return status, result
 
@@ -46,8 +46,7 @@ class PetFriends:
             result = res.text
         return status, result
 
-    def add_new_pet(self, auth_key: json, name: str, animal_type: str,
-                    age: str, pet_photo: str) -> json:
+    def add_new_pet(self, auth_key: json, name: str, animal_type: str, age: str, pet_photo: str) -> json:
         """Метод отправляет (постит) на сервер данные о добавляемом питомце и возвращает статус
         запроса на сервер и результат в формате JSON с данными добавленного питомца"""
 
@@ -58,6 +57,7 @@ class PetFriends:
                 'age': age,
                 'pet_photo': (pet_photo, open(pet_photo, 'rb'), 'image/jpeg')
             })
+
         headers = {'auth_key': auth_key['key'], 'Content-Type': data.content_type}
 
         res = requests.post(self.base_url + 'api/pets', headers=headers, data=data)
@@ -86,8 +86,7 @@ class PetFriends:
             result = res.text
         return status, result
 
-    def update_pet_info(self, auth_key: json, pet_id: str, name: str,
-                        animal_type: str, age: int) -> json:
+    def update_pet_info(self, auth_key: json, pet_id: str, name: str, animal_type: str, age: int) -> json:
         """Метод отправляет запрос на сервер об обновлении данных питомца по указанному ID и
         возвращает статус запроса и result в формате JSON с обновлёнными данными питомца"""
 
@@ -115,9 +114,8 @@ class PetFriends:
             fields={
                 'name': name,
                 'animal_type': animal_type,
-                'age': age
-            }
-        )
+                'age': age,
+            })
 
         headers = {
             'auth_key': auth_key['key'],
@@ -129,29 +127,34 @@ class PetFriends:
         result = ""
         try:
             result = res.json()
-        except:
+        except json.decoder.JSONDecodeError:
             result = res.text
         print(result)
         return status, result
 
-# Первая часть практического задания 19.7.2
+    def add_a_photo_for_the_pet(self, auth_key: json, pet_id: str, pet_photo: str) -> json:
 
-# У нас есть готовая библиотека с реализацией основных методов, но остались ещё два нереализованных метода.
-# Это и будет первым практическим заданием: посмотреть документацию к имеющимся API-методам на сайте
-# https://petfriends1.herokuapp.com/apidocs/#/default/put_api_pets__pet_id_. Найти методы,
-# которые ещё не реализованы в библиотеке, и написать их реализацию в файле api.py.
+        data = MultipartEncoder(
+            fields={
+                'pet_photo': (pet_photo, open(pet_photo, 'rb'), 'image/jpeg')
+            })
 
-# Эти запросы нужно написать реализацию
-# POST /api/create_pet_simple
-# POST /api/pets/set_photo/{pet_id}
+        headers = {
+            'auth_key': auth_key['key'],
+            'Content-Type': data.content_type
+        }
 
-# Вторая часть задания:
+        res = requests.put(self.base_url + 'api/pets/set_photo/{pet_id}' + pet_id, headers=headers, data=data)
+        status = res.status_code
+        result = ""
+        try:
+            result = res.json()
+        except json.decoder.JSONDecodeError:
+            result = res.text
+        return status, result
 
-# Как вы уже изучали ранее, видов тестирования много, соответственно, и тест-кейсов может быть очень много.
-# Мы с вами написали пять простых позитивных тестов, проверяющих функционал с корректными данными,
-# с ожиданием того, что всё пройдёт хорошо. Наша задача — убедиться, что система возвращает статус с кодом 200.
-# Но как будет реагировать тестируемое приложение, если мы в параметрах передадим слишком большое значение или вообще
-# его не передадим? Что будет, если мы укажем неверный ключ авторизации и так далее?
-#
-# Подумайте над вариантами тест-кейсов и напишите ещё 10 различных тестов для данного REST API интерфейса.
-# Готовые тест-кейсы разместите на GitHub и пришлите ссылку.
+# Этим запросам нужно написать реализацию:
+
+# POST /api/create_pet_simple - сделал.
+
+# POST /api/pets/set_photo/{pet_id} - не сделал

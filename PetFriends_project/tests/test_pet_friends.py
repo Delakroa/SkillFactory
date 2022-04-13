@@ -5,19 +5,19 @@ import os
 pf = PetFriends()
 
 
-def test_get_api_key_for_valis_user(email=valid_email, password=valid_password):
-    """Проверяем что запрос api ключа возвращает статус 200 и в результате содержится слово key"""
+def test_get_api_key_for_valid_user(email=valid_email, password=valid_password):
+    """ Проверяем что запрос api ключа возвращает статус 200 и в результате содержится слово key"""
 
     # Отправляем запрос и сохраняем полученный ответ с кодом статуса в status, а текст ответа в result
     status, result = pf.get_api_key(email, password)
 
     # Сверяем полученные данные с нашими ожиданиями
     assert status == 200
-    assert "key" in result
+    assert 'key' in result
 
 
 def test_get_all_pets_with_valid_key(filter=''):
-    """Проверяем что запрос всех питомцев возвращает не пустой список.
+    """ Проверяем что запрос всех питомцев возвращает не пустой список.
     Для этого сначала получаем api ключ и сохраняем в переменную auth_key. Далее используя этого ключ
     запрашиваем список всех питомцев и проверяем что список не пустой.
     Доступное значение параметра filter - 'my_pets' либо '' """
@@ -30,7 +30,7 @@ def test_get_all_pets_with_valid_key(filter=''):
 
 
 def test_add_new_pet_with_valid_data(name='Зайчик', animal_type='лесной',
-                                     age='2', pet_photo='images/kartinki-zajchiki-58.jpg'):
+                                     age='1', pet_photo='images/kartinki-zajchiki-58.jpg'):
     """Проверяем что можно добавить питомца с корректными данными"""
 
     # Получаем полный путь изображения питомца и сохраняем в переменную pet_photo
@@ -71,7 +71,7 @@ def test_successful_delete_self_pet():
     assert pet_id not in my_pets.values()
 
 
-def test_successful_update_self_pet_info(name='Заенька', animal_type='луговая', age=5):
+def test_successful_update_self_pet_info(name='Мурзик', animal_type='Котэ', age=5):
     """Проверяем возможность обновления информации о питомце"""
 
     # Получаем ключ auth_key и список своих питомцев
@@ -90,19 +90,40 @@ def test_successful_update_self_pet_info(name='Заенька', animal_type='л�
         raise Exception("Моих питомцев нет")
 
 
-def test_delete_self_pet_allpets():
-    """testing delete all pets"""
+def test_add_new_pet_without_photo(name='Зайчик', animal_type='лесной',
+                                   age='1'):
+    """Проверяем что можно добавить питомца с корректными данными"""
+
+    # Запрашиваем ключ api и сохраняем в переменную auth_key
     _, auth_key = pf.get_api_key(valid_email, valid_password)
-    _, pets = pf.get_list_of_pets(auth_key, '')
-    while True:
-        if len(pets['pets']) > 0:
-            pet_id = pets['pets'][0]['id']
-            status, _ = pf.delete_pet(auth_key, pet_id)
-            _, pets = pf.get_list_of_pets(auth_key, '')
-            assert status == 200
-            assert pet_id not in pets.values()
-        break
-    _, pets = pf.get_list_of_pets(auth_key, '')
-    status, result = pf.get_list_of_pets(auth_key, '')
+
+    # Добавляем питомца
+    status, result = pf.new_pet_without_photo(auth_key, name, animal_type, age)
+
+    # Сверяем полученный ответ с ожидаемым результатом
     assert status == 200
-    assert len(result['pets']) == 100
+    assert result['name'] == name
+
+
+def test_delete_all_pets():
+    """Тестирование удаление всех питомцев"""
+
+    # Получаем ключ auth_key и список своих питомцев
+    _, auth_key = pf.get_api_key(valid_email, valid_password)
+    _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
+
+    while True:
+        if len(my_pets['pets']) > 0:
+            # Берём id первого питомца из списка и отправляем запрос на удаление
+            pet_id = my_pets['pets'][0]['id']
+            status, _ = pf.delete_pet(auth_key, pet_id)
+
+            # Ещё раз запрашиваем список своих питомцев
+            _, my_pets = pf.get_list_of_pets(auth_key, 'my_pets')
+            # Если ваши питомцы отсутствуют, то цикл прерывается.
+            if len(my_pets['pets']) == 0:
+                break
+
+            # Проверяем что статус ответа равен 200 и в списке питомцев нет id удалённого питомца
+            assert status == 200
+            assert pet_id not in my_pets.values()
