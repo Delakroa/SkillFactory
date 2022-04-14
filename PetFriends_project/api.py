@@ -146,14 +146,16 @@ class PetFriends:
             'Content-Type': data.content_type
         }
 
-        res = requests.post(self.base_url + 'api/pets/set_photo/{pet_id}' + pet_id, headers=headers, data=data)
+        res = requests.post(self.base_url + 'api/pets/set_photo/' + pet_id, headers=headers, data=data)
         status = res.status_code
         result = ""
         try:
             result = res.json()
         except json.decoder.JSONDecodeError:
             result = res.text
+        print(result)
         return status, result
+
 
 # Этим запросам нужно написать реализацию:
 
