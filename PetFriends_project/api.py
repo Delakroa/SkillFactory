@@ -132,7 +132,7 @@ class PetFriends:
         print(result)
         return status, result
 
-    def add_a_photo_for_the_pet(self, auth_key: json, pet_id: str, pet_photo: str) -> json:
+    def add_photo_for_the_pet(self, auth_key: json, pet_id: str, pet_photo: str) -> json:
 
         data = MultipartEncoder(
             fields={
