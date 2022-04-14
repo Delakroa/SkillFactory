@@ -105,6 +105,32 @@ def test_add_new_pet_without_photo(name='Зайчик', animal_type='лесно�
     assert result['name'] == name
 
 
+def test_add_photo_for_the_pet(pet_photo='images/kartinki-zajchiki-58.jpg'):
+    """Тестирование добавление фото существующего питомца"""
+
+    # Получаем полный путь изображения питомца и сохраняем в переменную pet_photo
+    pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
+
+    # Получаем ключ auth_key и запрашиваем список своих питомцев
+    _, auth_key = pf.get_api_key(valid_email, valid_password)
+    _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
+
+    # Проверяем - если список своих питомцев пустой, то добавляем нового и опять запрашиваем список своих питомцев
+    if len(my_pets['pets']) == 0:
+        pf.add_new_pet(auth_key, "Суперкроль", "кролик", "3", "images/kartinki-zajchiki-58.jpg")
+        _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
+
+    # Берём id первого питомца из списка, добавляем фото питомца
+    pet_id = my_pets['pets'][0]['id']
+    status, _ = pf.add_photo_for_the_pet(auth_key, pet_id, pet_photo)
+
+    _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
+
+    # Проверяем что статус ответа равен 200
+    assert status == 200
+    assert pet_id not in my_pets.values()
+
+
 def test_delete_all_pets():
     """Тестирование удаление всех питомцев"""
 
