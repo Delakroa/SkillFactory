@@ -96,11 +96,33 @@ def test_add_new_pet_with_empty_data(name='', animal_type='',
     assert result['name'] == name
 
 
-def test_add_new_pet_with_invalid_data(name='-+=.,|/!@#$%^&йцукенгшщзхъфывапроqwertyuiopasdfghjklzxcv-+=.,|/!@#$%^&'
-                                            'QWERTYUIOPPASDFGHJKLZXCVBNMЙЦУКЕНГШЩЗХФЫВАПРОЛДЖЯЧСМИТЬБЮ',
-                                       animal_type='йцукенгшщзхъфывапроqwertyuiopasdfghjklzxcv+=.,/!@#$%^&'
-                                                   'QWERTYUIOPPASDFGHJKLZXCVBNMЙЦУКЕНГШЩЗХФЫВАПРОЛДЖЯЧСМИТЬБЮ' * 1000,
-                                       age='-0006546516215616' * 5, pet_photo='images/kartinki-zajchiki-58.jpg'):
+def test_add_new_pet_with_special_characters(name='!#$%&()+,-./:;<=>?@[\]^_`{|}~',
+                                             animal_type='!"#$%&()*+,-./:;<=>?@[\]^_`{|}~',
+                                             age='!#$%&()+,-./:;<=>?@[\]^_`{|}~',
+                                             pet_photo='images/kartinki-zajchiki-58.jpg'):
+    """Проверяем что можно добавить питомца с пустыми данными"""
+
+    # Получаем полный путь изображения питомца и сохраняем в переменную pet_photo
+    pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
+
+    # Запрашиваем ключ api и сохраняем в переменную auth_key
+    _, auth_key = pf.get_api_key(valid_email, valid_password)
+
+    # Добавляем питомца
+    status, result = pf.add_new_pet(auth_key, name, animal_type, age, pet_photo)
+
+    # Сверяем полученный ответ с ожидаемым результатом
+    assert status == 200
+    assert result['name'] == name
+
+
+def test_add_new_pet_with_large_amount_of_data(name='-+=.,|/!@#$%^&йцукенгшщзхъфывапроqwertyuiopasdfghjklzxcv-+=.,'
+                                                    '|/!@#$%^&'
+                                                    'QWERTYUIOPPASDFGHJKLZXCVBNMЙЦУКЕНГШЩЗХФЫВАПРОЛДЖЯЧСМИТЬБЮ',
+                                               animal_type='йцукенгшщзхъфывапроqwertyuiopasdfghjklzxcv+=.,/!@#$%^&'
+                                                           'QWERTYUIOPPASDFGHJKLZXCVBNMЙЦУКЕНГШЩЗХФЫВАПРОЛДЖЯЧСМИТЬБЮ' * 1000,
+                                               age='-0006546516215616' * 5,
+                                               pet_photo='images/kartinki-zajchiki-58.jpg'):
     """Проверяем что можно добавить питомца с некорректными данными"""
 
     # Получаем полный путь изображения питомца и сохраняем в переменную pet_photo
