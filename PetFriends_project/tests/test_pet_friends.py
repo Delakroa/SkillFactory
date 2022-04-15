@@ -1,5 +1,5 @@
 from api import PetFriends
-from settings import valid_email, valid_password, invalid_email, invalid_password
+from settings import *
 import os
 
 pf = PetFriends()
@@ -31,7 +31,7 @@ def test_get_api_key_for_invalid_user(email=invalid_email, password=invalid_pass
         print("\nНеверно введён логин или пароль! Попробуйте снова.")
 
 
-def test_get_all_pets_with_valid_key(filter='my_pets'):
+def test_get_all_pets_with_valid_key(filter=''):
     """ Проверяем что запрос всех питомцев возвращает не пустой список.
     Для этого сначала получаем api ключ и сохраняем в переменную auth_key. Далее используя этого ключ
     запрашиваем список всех питомцев и проверяем что список не пустой.
@@ -63,6 +63,24 @@ def test_getting_all_pets_by_id(filter='id'):
 def test_add_new_pet_with_valid_data(name='Зайчик', animal_type='лесной',
                                      age='1', pet_photo='images/kartinki-zajchiki-58.jpg'):
     """Проверяем что можно добавить питомца с корректными данными"""
+
+    # Получаем полный путь изображения питомца и сохраняем в переменную pet_photo
+    pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
+
+    # Запрашиваем ключ api и сохраняем в переменную auth_key
+    _, auth_key = pf.get_api_key(valid_email, valid_password)
+
+    # Добавляем питомца
+    status, result = pf.add_new_pet(auth_key, name, animal_type, age, pet_photo)
+
+    # Сверяем полученный ответ с ожидаемым результатом
+    assert status == 200
+    assert result['name'] == name
+
+
+def test_add_new_pet_with_empty_data(name='', animal_type='',
+                                     age='', pet_photo='images/kartinki-zajchiki-58.jpg'):
+    """Проверяем что можно добавить питомца с пустыми данными"""
 
     # Получаем полный путь изображения питомца и сохраняем в переменную pet_photo
     pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
