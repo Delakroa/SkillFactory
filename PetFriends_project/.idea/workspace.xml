@@ -17,12 +17,15 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="27YdU6qiUav33GRuiB3sENmrBk7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "settings.editor.selected.configurable": "xml.catalog"
   }
 }]]></component>
@@ -478,7 +481,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650012689498</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="rename">
+      <created>1650012769208</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1650012769208</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
