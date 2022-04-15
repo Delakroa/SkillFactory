@@ -152,10 +152,30 @@ def test_add_new_pet_empty_data_without_photo(name='', animal_type='', age=''):
 
 
 def test_add_new_pet_with_cyrillic_input(name='абвгдеёжзиклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
-                                        animal_type='абвгдеёжзиклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
-                                        age='абвгдеёжзиклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
-                                        pet_photo='images/kartinki-zajchiki-58.jpg'):
+                                         animal_type='абвгдеёжзиклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
+                                         age='абвгдеёжзиклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
+                                         pet_photo='images/kartinki-zajchiki-58.jpg'):
     """Проверяем что можно добавить питомца с кириллическим вводом"""
+
+    # Получаем полный путь изображения питомца и сохраняем в переменную pet_photo
+    pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
+
+    # Запрашиваем ключ api и сохраняем в переменную auth_key
+    _, auth_key = pf.get_api_key(valid_email, valid_password)
+
+    # Добавляем питомца
+    status, result = pf.add_new_pet(auth_key, name, animal_type, age, pet_photo)
+
+    # Сверяем полученный ответ с ожидаемым результатом
+    assert status == 200
+    assert result['name'] == name
+
+
+def test_add_new_pet_with_input_of_english_letters(name='abcdifghijklmnopqrstuvwyzABCDIFGHIJKLMNOPQRSTUVWXYZ',
+                                                   animal_type='abcdifghijklmnopqrstuvwyzABCDIFGHIJKLMNOPQRSTUVWXYZ',
+                                                   age='abcdifghijklmnopqrstuvwyzABCDIFGHIJKLMNOPQRSTUVWXYZ',
+                                                   pet_photo='images/kartinki-zajchiki-58.jpg'):
+    """Проверяем что можно добавить питомца с английским вводом"""
 
     # Получаем полный путь изображения питомца и сохраняем в переменную pet_photo
     pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
