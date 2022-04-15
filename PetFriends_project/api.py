@@ -28,7 +28,7 @@ class PetFriends:
             result = res.text
         return status, result
 
-    def get_list_of_pets(self, auth_key: json, filter: str = "") -> json:
+    def get_list_of_pets(self, auth_key: json, filter: str = "my_pets") -> json:
         """Метод делает запрос к API сервера и возвращает статус запроса и результат в формате JSON
         со списком найденных питомцев, совпадающих с фильтром. На данный момент фильтр может иметь
         либо пустое значение - получить список всех питомцев, либо 'my_pets' - получить список
@@ -114,13 +114,10 @@ class PetFriends:
             fields={
                 'name': name,
                 'animal_type': animal_type,
-                'age': age,
+                'age': age
             })
 
-        headers = {
-            'auth_key': auth_key['key'],
-            'Content-Type': data.content_type
-        }
+        headers = {'auth_key': auth_key['key'], 'Content-Type': data.content_type}
 
         res = requests.post(self.base_url + 'api/create_pet_simple', headers=headers, data=data)
         status = res.status_code
@@ -141,10 +138,7 @@ class PetFriends:
                 'pet_photo': (pet_photo, open(pet_photo, 'rb'), 'image/jpeg')
             })
 
-        headers = {
-            'auth_key': auth_key['key'],
-            'Content-Type': data.content_type
-        }
+        headers = {'auth_key': auth_key['key'], 'Content-Type': data.content_type}
 
         res = requests.post(self.base_url + 'api/pets/set_photo/' + pet_id, headers=headers, data=data)
         status = res.status_code
@@ -160,5 +154,4 @@ class PetFriends:
 # Этим запросам нужно написать реализацию:
 
 # POST /api/create_pet_simple - сделал.
-
-# POST /api/pets/set_photo/{pet_id} - не сделал
+# POST /api/pets/set_photo/{pet_id} - сделал
