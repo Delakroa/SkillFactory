@@ -14,7 +14,7 @@ def test_get_api_key_for_valid_user(email=valid_email, password=valid_password):
     # Сверяем полученные данные с нашими ожиданиями
     assert status == 200
     assert 'key' in result
-    return print("\nКлюч получен!")
+    return print(f"\n{result}\nКлюч получен!")
 
 
 def test_get_api_key_for_invalid_user(email=invalid_email, password=invalid_password):
