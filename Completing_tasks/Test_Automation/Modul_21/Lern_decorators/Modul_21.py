@@ -4,6 +4,7 @@ import requests
 from datetime import datetime
 from config import email, password
 
+
 # @do_twice
 # def test_twice_without_params():
 #     print("Этот вызов без параметров")
@@ -43,7 +44,7 @@ from config import email, password
 
 # ------------------------------------------------------------------------------------
 
-# Организация setup и teardown в фикстурах\
+# Организация setup фикстурах
 @pytest.fixture()
 def get_key():
     # переменные email и password нужно заменить своими учетными данными
@@ -61,6 +62,7 @@ def test_getAllPets(get_key):
     assert len(response.json().get('pets')) > 0, 'Количество питомцев не соответствует ожиданиям'
 
 
+# Организация teardown в фикстурах
 @pytest.fixture(autouse=True)
 def time_delta():
     start_time = datetime.now()
