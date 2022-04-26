@@ -1,4 +1,4 @@
-# import functools
+import functools
 
 
 def do_twice(func):
