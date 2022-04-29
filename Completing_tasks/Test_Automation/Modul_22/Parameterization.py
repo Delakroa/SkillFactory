@@ -29,7 +29,8 @@ import pytest
 # def test_python_string_slicer_generated(param_fun_generated):
 #     (input, expected_output) = param_fun_generated
 #     result = python_string_slicer(input)
-#     print("Входная строка: {0}\r\nВыходная строка: {1}\r\nОжидаемое значение: {2}".format(input, result, expected_output))
+#     print("Входная строка: {0}\r\nВыходная строка: {1}"
+#           "\r\nОжидаемое значение: {2}".format(input, result, expected_output))
 #     assert result == expected_output
 
 
@@ -56,8 +57,29 @@ import pytest
 # параметров в выводе. Точно так же нам доступны два варианта передачи ids в фикстуру — в виде имени функции или набора
 # значений. Для начала давайте посмотрим, как передаётся набор значений:
 
-@pytest.mark.parametrize("x", [-1, 0, 1], ids=["negative", "zero", "positive"])
-@pytest.mark.parametrize("y", [100, 1000], ids=["3 digit", "4 digit"])
-def test_multiply_params(x, y):
-    print("x: {0}, y: {1}".format(x, y))
-    assert True
+# @pytest.mark.parametrize("x", [-1, 0, 1], ids=["negative", "zero", "positive"])
+# @pytest.mark.parametrize("y", [100, 1000], ids=["3 digit", "4 digit"])
+# def test_multiply_params(x, y):
+#     print("x: {0}, y: {1}".format(x, y))
+#     assert True
+
+# -----------------------------------------------------------------------------------------------------------------
+
+# Проделаем аналогичные операции с генератором имён параметров:
+
+# def ids_x(val):
+#     return "x=({0})".format(str(val))
+#
+#
+# def ids_y(val):
+#     return "y=({0})".format(str(val))
+#
+#
+# @pytest.mark.parametrize("x", [-1, 0, 1], ids=ids_x)
+# @pytest.mark.parametrize("y", [100, 1000], ids=ids_y)
+# def test_multiply_params(x, y):
+#     print("x: {0}, y: {1}".format(x, y))
+#     assert True
+
+# -----------------------------------------------------------------------------------------------------------------
+
