@@ -83,3 +83,31 @@ import pytest
 
 # -----------------------------------------------------------------------------------------------------------------
 
+#  Надо пересмотреть и исправить
+
+# def ids_a(val):
+#     return "a=({0})".format(str(val))
+#
+#
+# def ids_b(val):
+#     return "b=({0})".format(str(val))
+#
+#
+# def ids_c(val):
+#     return "c=({0})".format(str(val))
+#
+#
+# @pytest.mark.parametrize("a", [4, 0, 6], ids=ids_a)
+# @pytest.mark.parametrize("b", [10, 5, 3], ids=ids_b)
+# @pytest.mark.parametrize("c", [1, 7, 2], ids=ids_c)
+# def test_is_triangle(a, b, c):
+#     print("a: {0}, b: {1}, c: {2}".format(a, b, c))
+#     assert True
+#
+#
+# def triangle(a, b, c):
+#     return a + b > c and a + c > b and b + c > a
+
+
+# -----------------------------------------------------------------------------------------------------------------
+
