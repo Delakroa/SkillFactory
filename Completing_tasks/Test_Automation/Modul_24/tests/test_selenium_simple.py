@@ -1,22 +1,22 @@
 
 
 def test_search_example(selenium):
-    """Search some phrase in google and make a screenshot of the page."""
+    """Найдите в гугле какую-нибудь фразу и сделайте скриншот страницы."""
 
-    # Open google search page:
+    # Откройте страницу поиска:
     selenium.get('http://google.com')
 
-    # Find the field for search text input
+    # Найдите поле для ввода поискового текста:
     search_input = selenium.find_element_by_id('lst-ib')
 
-    # Enter the text for search:
+    # Введите текст для поиска:
     search_input.clear()
     search_input.send_keys('my first selenium test for Web UI!')
 
-    # Click Search:
+    # Нажмите Поиск:
     search_button = selenium.find_element_by_name('btnK')
     search_button.click()
 
-    # Make the screenshot of browser windows:
+    # Сделать скриншот окон браузера:
     selenium.save_screenshot('result.png')
 
