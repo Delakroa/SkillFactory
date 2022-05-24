@@ -18,14 +18,14 @@ import time
 
 
 def test_petfriends(selenium):
-    """ Search some phrase in google and make a screenshot of the page. """
+    """ Найдите в гугле какую-нибудь фразу и сделайте скриншот страницы. """
 
-    # Open PetFriends base page:
+    # Открыть базовую страницу PetFriends:
     selenium.get("https://petfriends1.herokuapp.com/")
 
-    time.sleep(10)  # just for demo purposes, do NOT repeat it on real projects!
+    time.sleep(10)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
 
-    # Find the field for search text input:
+    # Найдите поле для ввода поискового текста:
     btn_newuser = selenium.find_element_by_xpath("//button[@onclick=\"document.location='/new_user';\"]")
 
     btn_newuser.click()
@@ -46,16 +46,16 @@ def test_petfriends(selenium):
     btn_submit = selenium.find_element_by_xpath("//button[@type='submit']")
     btn_submit.click()
 
-    time.sleep(10)  # just for demo purposes, do NOT repeat it on real projects!
+    time.sleep(10)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
     if selenium.current_url == 'https://petfriends1.herokuapp.com/all_pets':
-        # Make the screenshot of browser window:
+        # Сделать скриншот окна браузера:
         selenium.save_screenshot('result_petfriends.png')
     else:
         raise Exception("login error")
 
-    # # Save cookies of the browser after the login
+    # Сохранять куки браузера после авторизации
     # with open('my_cookies.txt', 'wb') as cookies:
     #     pickle.dump(selenium.get_cookies(), cookies)
     #
-    # # Make the screenshot of browser window:
+    # Сделать скриншот окна браузера:
     # selenium.save_screenshot('result_petfriends.png')
