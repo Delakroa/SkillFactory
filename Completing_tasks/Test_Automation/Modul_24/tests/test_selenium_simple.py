@@ -12,7 +12,9 @@
 #  2) Установить все требования:
 #     pip install -r requirements.txt
 #  3) Запустить тесты:
-#     python3 -m pytest -v --driver Chrome --driver-path E:\python library\chromedriver.exe test_selenium_simple.py
+#     python3 -m pytest -v --driver Chrome --driver-path
+#     E:\python_library\SkillFaktory\SkillFactory_practice\Completing_tasks\Test_Automation\Modul_24\tests
+#     \chromedriver.exe test_selenium_simple.py
 
 import time
 
