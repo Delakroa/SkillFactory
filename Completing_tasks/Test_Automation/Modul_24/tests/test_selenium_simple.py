@@ -44,4 +44,4 @@ def test_search_example(selenium):
     time.sleep(10)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
 
     # # Сделать скриншот окон браузера:
-    # selenium.save_screenshot('result.png')
+    selenium.save_screenshot('result.png')
