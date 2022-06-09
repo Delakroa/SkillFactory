@@ -38,7 +38,7 @@ def test_search_example(selenium):
     time.sleep(5)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
 
     # Нажмите Поиск:
-    search_button = selenium.find_element_by_class_name('gNO89b')
+    search_button = selenium.find_element_by_name('btnK')
     search_button.click()
 
     time.sleep(5)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
