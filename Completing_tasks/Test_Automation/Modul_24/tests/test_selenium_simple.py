@@ -16,6 +16,7 @@
 #     E:\python_library\SkillFaktory\SkillFactory_practice\Completing_tasks\Test_Automation\Modul_24\tests
 #     \chromedriver.exe test_selenium_simple.py
 
+
 import time
 
 
@@ -39,8 +40,8 @@ def test_search_example(selenium):
     # Нажмите Поиск:
     search_button = selenium.find_element_by_class_name('gNO89b')
     search_button.click()
-    #
+
     time.sleep(10)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
-    #
+
     # # Сделать скриншот окон браузера:
     # selenium.save_screenshot('result.png')

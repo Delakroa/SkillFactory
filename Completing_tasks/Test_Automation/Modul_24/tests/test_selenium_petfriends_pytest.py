@@ -13,7 +13,11 @@
 #     pip install -r requirements.txt
 #  3) Run tests:
 #     python3 -m pytest -v --driver Chrome --driver-path /tests/chrome test_selenium_simple.py
-#
+
+#   pytest -v --driver Chrome --driver-path E:\python_libr
+# ary\SkillFaktory\SkillFactory_practice\Completing_tasks\Test_Automation\Modul_24\tests//chromedriver.exe
+
+
 import time
 
 
@@ -21,7 +25,7 @@ def test_petfriends(selenium):
     """ Найдите в гугле какую-нибудь фразу и сделайте скриншот страницы. """
 
     # Открыть базовую страницу PetFriends:
-    selenium.get("https://petfriends1.herokuapp.com/")
+    selenium.get("https://petfriends.skillfactory.ru/")
 
     time.sleep(10)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
 
@@ -47,6 +51,7 @@ def test_petfriends(selenium):
     btn_submit.click()
 
     time.sleep(10)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
+
     if selenium.current_url == 'https://petfriends1.herokuapp.com/all_pets':
         # Сделать скриншот окна браузера:
         selenium.save_screenshot('result_petfriends.png')
