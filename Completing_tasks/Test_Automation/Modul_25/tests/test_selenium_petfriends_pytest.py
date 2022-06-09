@@ -34,7 +34,7 @@ def test_petfriends(selenium):
 
     btn_newuser.click()
 
-    btn_exist_acc = selenium.find_element_by_link_text(u"У меня уже есть аккаунт")
+    btn_exist_acc = selenium.find_element_by_link_text("У меня уже есть аккаунт")
     btn_exist_acc.click()
 
     field_email = selenium.find_element_by_id("email")
