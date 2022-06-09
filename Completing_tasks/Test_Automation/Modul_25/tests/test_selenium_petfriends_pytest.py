@@ -52,7 +52,7 @@ def test_petfriends(selenium):
 
     time.sleep(10)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
 
-    if selenium.current_url == 'https://petfriends1.herokuapp.com/all_pets':
+    if selenium.current_url == 'https://petfriends.skillfactory.ru/all_pets':
         # Сделать скриншот окна браузера:
         selenium.save_screenshot('result_petfriends.png')
     else:
