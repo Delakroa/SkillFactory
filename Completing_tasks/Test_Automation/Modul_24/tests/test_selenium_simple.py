@@ -26,7 +26,7 @@ def test_search_example(selenium):
     # Откройте страницу поиска:
     selenium.get('https://www.google.ru/')
 
-    time.sleep(10)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
+    time.sleep(5)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
 
     # Найдите поле для ввода поискового текста:
     search_input = selenium.find_element_by_xpath('//input[@class="gLFyf gsfi"]')
@@ -35,13 +35,13 @@ def test_search_example(selenium):
     search_input.clear()
     search_input.send_keys('my first selenium test for Web UI!')
 
-    time.sleep(10)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
+    time.sleep(5)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
 
     # Нажмите Поиск:
     search_button = selenium.find_element_by_class_name('gNO89b')
     search_button.click()
 
-    time.sleep(10)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
+    time.sleep(5)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
 
     # # Сделать скриншот окон браузера:
     selenium.save_screenshot('result.png')
