@@ -27,7 +27,7 @@ def test_petfriends(selenium):
     # Открыть базовую страницу PetFriends:
     selenium.get("https://petfriends.skillfactory.ru/")
 
-    time.sleep(10)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
+    time.sleep(5)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
 
     # Найдите поле для ввода поискового текста:
     btn_newuser = selenium.find_element_by_xpath("//button[@onclick=\"document.location='/new_user';\"]")
@@ -50,7 +50,7 @@ def test_petfriends(selenium):
     btn_submit = selenium.find_element_by_xpath("//button[@type='submit']")
     btn_submit.click()
 
-    time.sleep(10)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
+    time.sleep(5)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
 
     if selenium.current_url == 'https://petfriends.skillfactory.ru/all_pets':
         # Сделать скриншот окна браузера:
@@ -64,3 +64,4 @@ def test_petfriends(selenium):
     #
     # Сделать скриншот окна браузера:
     # selenium.save_screenshot('result_petfriends.png')
+
