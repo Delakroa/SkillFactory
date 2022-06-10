@@ -9,7 +9,6 @@ def firefox_options(firefox_options):
     return firefox_options
 
 
-@pytest.fixture
 def chrome_options(chrome_options):
     chrome_options.binary_location = 'E:\python library\chromedriver.exe'
     chrome_options.add_extension('/path/to/extension.crx')

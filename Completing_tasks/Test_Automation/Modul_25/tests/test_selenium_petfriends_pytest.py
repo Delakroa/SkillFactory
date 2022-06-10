@@ -15,7 +15,7 @@
 #     python3 -m pytest -v --driver Chrome --driver-path /tests/chrome test_selenium_simple.py
 
 #   pytest -v --driver Chrome --driver-path E:\python_libr
-# ary\SkillFaktory\SkillFactory_practice\Completing_tasks\Test_Automation\Modul_24\tests//chromedriver.exe
+# ary\SkillFaktory\SkillFactory_practice\Completing_tasks\Test_Automation\Modul_25\tests//chromedriver.exe
 
 
 import time
