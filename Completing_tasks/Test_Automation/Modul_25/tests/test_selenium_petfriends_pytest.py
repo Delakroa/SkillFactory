@@ -21,7 +21,7 @@
 import time
 
 
-def test_petfriends(selenium):
+def test_pet_friends(selenium):
     """ Найдите в гугле какую-нибудь фразу и сделайте скриншот страницы. """
 
     # Открыть базовую страницу PetFriends:
@@ -30,9 +30,9 @@ def test_petfriends(selenium):
     time.sleep(5)  # просто для демонстрационных целей, НЕ повторяйте это на реальных проектах!
 
     # Найдите поле для ввода поискового текста:
-    btn_newuser = selenium.find_element_by_xpath("//button[@onclick=\"document.location='/new_user';\"]")
+    btn_new_user = selenium.find_element_by_xpath("//button[@onclick=\"document.location='/new_user';\"]")
 
-    btn_newuser.click()
+    btn_new_user.click()
 
     btn_exist_acc = selenium.find_element_by_link_text("У меня уже есть аккаунт")
     btn_exist_acc.click()
@@ -54,14 +54,7 @@ def test_petfriends(selenium):
 
     if selenium.current_url == 'https://petfriends.skillfactory.ru/all_pets':
         # Сделать скриншот окна браузера:
-        selenium.save_screenshot('result_petfriends.png')
+        selenium.save_screenshot('result_pet_friends.png')
     else:
         raise Exception("login error")
-
-    # Сохранять куки браузера после авторизации
-    # with open('my_cookies.txt', 'wb') as cookies:
-    #     pickle.dump(selenium.get_cookies(), cookies)
-    #
-    # Сделать скриншот окна браузера:
-    # selenium.save_screenshot('result_petfriends.png')
 
