@@ -1,39 +1,48 @@
 #   pytest -v --driver Chrome --driver-path E:\python_libr
 # ary\SkillFaktory\SkillFactory_practice\Completing_tasks\Test_Automation\Modul_25\tests//chromedriver.exe
-
 import pytest
-import time
 from selenium import webdriver  # подключение библиотеки
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
-driver = webdriver.Chrome()  # получение объекта веб-драйвера для нужного браузера
-driver.get('https://petfriends.skillfactory.ru/new_user')
-
-driver.find_element_by_id('name')
-driver.find_element_by_name('name')
-driver.find_element_by_class_name('btn')
-driver.find_element_by_tag_name('input')
-driver.find_element_by_css_selector('input.form-control')
-driver.find_element_by_link_text('У меня уже есть аккаунт')
-driver.find_element_by_xpath('//input[@id="name"]')
+driver_path = 'E:/python_library/chromedriver.exe'
+driver = webdriver.Chrome(executable_path=driver_path)
 
 
 @pytest.fixture(autouse=True)
 def testing():
-    pytest.driver = webdriver.Chrome('./chromedriver.exe')
     # Переходим на страницу авторизации
-    pytest.driver.get('http://petfriends1.herokuapp.com/login')
+    driver.get('https://petfriends.skillfactory.ru/login')
 
     yield
 
-    pytest.driver.quit()
+    driver.quit()
 
 
-def test_show_my_pets():
+def test_show_all_pets():
     # Вводим email
-    pytest.driver.find_element_by_id('email').send_keys('skillfaktory.qap66@gmail.com')
+    driver.find_element_by_id('email').send_keys('skillfaktory.qap66@gmail.com')
     # Вводим пароль
-    pytest.driver.find_element_by_id('pass').send_keys('7370377')
+    driver.find_element_by_id('pass').send_keys('7370377')
     # Нажимаем на кнопку входа в аккаунт
-    pytest.driver.find_element_by_css_selector('button[type="submit"]').click()
+    driver.find_element_by_css_selector('button[type="submit"]').click()
     # Проверяем, что мы оказались на главной странице пользователя
-    assert pytest.driver.find_element_by_tag_name('h1').text == "PetFriends"
+    assert driver.find_element_by_tag_name('h1').text == "PetFriends"
+
+
+def test_attributes():
+    driver.get('https://petfriends.skillfactory.ru')
+    images = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "myDynamicElement")))
+    names = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "myDynamicElement")))
+    descriptions = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "myDynamicElement")))
+
+    for i in range(len(names)):
+        assert images[i].get_attribute('src') != ''
+        assert names[i].text != ''
+        assert descriptions[i].text != ''
+        assert ', ' in descriptions[i]
+        parts = descriptions[i].text.split(", ")
+        assert len(parts[0]) > 0
+        assert len(parts[1]) > 0
+
