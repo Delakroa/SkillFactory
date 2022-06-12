@@ -1,8 +1,7 @@
 import pytest
 import requests
-from SkillFactory_practice.Completing_tasks.Test_Automation.Modul_19.Task_19_7_2_PetFriends_project.settings import *
-from SkillFactory_practice.Completing_tasks.Test_Automation.Modul_19.Task_19_7_2_PetFriends_project.api import \
-    PetFriends
+from Modul_19.Task_19_7_2_PetFriends_project.settings import *
+from Modul_19.Task_19_7_2_PetFriends_project.api import PetFriends
 
 # Если мы взглянем на тест-кейсы, которые мы составляли в модуле 20, то вспомним, что мы пытаемся перебрать
 # множество значений для одного и того же параметра, что наталкивает нас на мысль, что мы можем взять тесты
