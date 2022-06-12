@@ -40,7 +40,7 @@ def special_chars():
 
 
 @pytest.fixture(autouse=True)
-def ket_api_key():
+def get_api_key():
     """ Проверяем, что запрос api-ключа возвращает статус 200 и в результате содержится слово key"""
 
     # Отправляем запрос и сохраняем полученный ответ с кодом статуса в status, а текст ответа в result
