@@ -91,9 +91,7 @@ def test_get_all_pets_with_negative_filter(filter):
     assert pytest.status == 400
 
 
-@pytest.mark.parametrize("filter",
-                         ['', 'my_pets'],
-                         ids=['empti string', 'only my pets'])
+@pytest.mark.parametrize("filter", ['', 'my_pets'], ids=['empti string', 'only my pets'])
 def test_get_all_pets_with_valid_key(filter):
     pytest.status, result = pf.get_list_of_pets(pytest.key, filter)
 
