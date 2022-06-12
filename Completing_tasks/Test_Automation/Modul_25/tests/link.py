@@ -1,3 +1,5 @@
+DRIVER_PATH = 'E:/python_library/chromedriver.exe'
+
 pet_friends_login = "https://petfriends.skillfactory.ru/login"
 pet_friends_my_pets = "https://petfriends.skillfactory.ru/my_pets"
 
