@@ -7,7 +7,7 @@ def get_api_key(email: str, passwd: str):
         'email': email,
         'password': passwd,
     }
-    res = requests.get(url="https://petfriends1.herokuapp.com/login", headers=headers)
+    res = requests.get(url="https://petfriends.skillfactory.ru/login", headers=headers)
     status = res.status_code
     try:
         result = res.json()
