@@ -1,6 +1,5 @@
-from SkillFactory_practice.Completing_tasks.Test_Automation.Modul_19.Task_19_7_2_PetFriends_project.api import \
-    PetFriends
-from SkillFactory_practice.Completing_tasks.Test_Automation.Modul_19.Task_19_7_2_PetFriends_project.settings import *
+from Modul_19.Task_19_7_2_PetFriends_project.api import PetFriends
+from Modul_19.Task_19_7_2_PetFriends_project.settings import *
 import os
 
 pf = PetFriends()
