@@ -9,7 +9,7 @@ class PetFriends:
 
     def __init__(self):
         """Инициализация сайта дом питомца"""
-        self.base_url = "https://petfriends1.herokuapp.com/"
+        self.base_url = "https://petfriends.skillfactory.ru"
 
     def get_api_key(self, email: str, password: str = ""):
         """Метод делает запрос к API сервера и возвращает статус запроса и результата в формате JSON
