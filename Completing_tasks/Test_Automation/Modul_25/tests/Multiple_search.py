@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from link import *
 
 DRIVER_PATH = 'E:/python_library/chromedriver.exe'
 driver = webdriver.Chrome(executable_path=DRIVER_PATH)
@@ -15,30 +16,30 @@ driver = webdriver.Chrome(executable_path=DRIVER_PATH)
 def test_show_all_pets():
     """Множественный поиск"""
     # Переходим на страницу авторизации.
-    driver.get('https://petfriends.skillfactory.ru/login')
+    driver.get(pet_friends_login)
 
     # Вводим email.
-    driver.find_element_by_id('email').send_keys('skillfaktory.qap66@gmail.com')
+    driver.find_element_by_id('email').send_keys(valid_email)
 
     # Вводим пароль.
-    driver.find_element_by_id('pass').send_keys('7370377')
+    driver.find_element_by_id('pass').send_keys(valid_password)
 
     # Нажимаем на кнопку входа в аккаунт.
-    driver.find_element_by_css_selector('button[type="submit"]').click()
+    driver.find_element_by_css_selector(btn_click).click()
 
     # Проверяем, что мы оказались на главной странице пользователя
     assert driver.find_element_by_tag_name('h1').text == "PetFriends"
 
     # Переходим на страницу моих питомцев
-    driver.get('https://petfriends.skillfactory.ru/my_pets')
+    driver.get(pet_friends_my_pets)
 
     # Проверяем, что мы точно оказались на странице моих питомцев
     assert driver.find_element_by_tag_name('h2').text == "delakroa"
 
     # Ищем наших питомцев (картинка, имя, описание)
-    images = driver.find_elements_by_css_selector('.card-deck .card-img-top')
-    names = driver.find_elements_by_css_selector('.card-deck .card-img-top')
-    descriptions = driver.find_elements_by_css_selector('.card-deck .card-img-top')
+    images = driver.find_elements_by_css_selector(card_deck)
+    names = driver.find_elements_by_css_selector(card_deck)
+    descriptions = driver.find_elements_by_css_selector(card_deck)
 
     # for i in range(len(names)):  # Старый (неудачный) способ работы с массивами.
     for i in enumerate(names):
@@ -49,8 +50,6 @@ def test_show_all_pets():
         parts = descriptions[i].text.split(", ")
         assert len(parts[0]) > 0
         assert len(parts[1]) > 0
-
-    # print(names)
 
     driver.quit()
 
