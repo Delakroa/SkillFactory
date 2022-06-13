@@ -27,9 +27,10 @@ def test_show_all_pets(selenium):
 
     # Ищем наших питомцев (картинка, имя, описание).
     # Явное ожидание.
-    images = WebDriverWait(selenium, 10).until(EC.presence_of_element_located((By.ID, "myDynamicElement")))
-    names = WebDriverWait(selenium, 10).until(EC.presence_of_element_located((By.ID, "myDynamicElement")))
-    descriptions = WebDriverWait(selenium, 10).until(EC.presence_of_element_located((By.ID, "myDynamicElement")))
+    images = WebDriverWait(selenium, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, card_deck_image)))
+    names = WebDriverWait(selenium, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, card_deck_names)))
+    descriptions = WebDriverWait(selenium, 10).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, card_deck_descriptions)))
 
     # for i in enumerate(images):
     for i in range(len(names)):
