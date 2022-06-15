@@ -42,19 +42,15 @@ def test_all_pets():
 
     for i in range(len(names)):
         name = names[i].text
-        print('i =', i, 'names[i].text =', name)
         image = images[i].get_attribute('src')
         desc = descriptions[i].text
-        assert image != '' \
-               and image != 'https://petfriends.skillfactory.ru/static/images/upload2.jpg' \
-               and image != '(unknown)', "Нет фото"
+        assert image != '' and image != '(unknown)'
         assert name != '', "Нет имени"
-        assert desc != '' and desc != 'None, None лет', "Поле порода и возраст - пустое"
-        assert ',' in desc, 'Пропущена запятая в поле "порода, возраст"'
+        assert desc != '' and desc != 'None, None лет'
+        assert ',' in desc
         parts = desc.split(",")
-        print('parts[1]=', parts[1])
-        assert len(parts[0]) > 0 and parts[0] != 'None', "Нет названия породы"
-        assert len(parts[1]) > 0 and parts[1] != 'None лет' and parts[1] != ' лет', "Нет возраста"
+        assert len(parts[0]) > 0 and parts[0] != 'None'
+        assert len(parts[1]) > 0 and parts[1] != 'None лет' and parts[1] != ' лет'
 
 
 def test_my_pets():
@@ -73,29 +69,24 @@ def test_my_pets():
     assert pytest.driver.find_element(By.TAG_NAME, 'h1').text == "PetFriends"
 
     # Заходим на страницу своих питомцев
-    wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "div#navbarNav > ul > li > a"))).click()
+    wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, my_pets))).click()
     assert pytest.driver.find_element(By.TAG_NAME, 'h2').text == "delakroa"
 
     # количество питомцев
-    # сохраняем в переменную data_statistic элементы статистики
-    data_statistic = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".\\.col-sm-4.left")))
+    # сохраняем в переменную data_stats элементы статистики
+    data_stats = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, profile_statistics)))
 
     # Получаем количество питомцев из данных статистики
-    statistic = data_statistic[0].text.split('\n')
+    statistic = data_stats[0].text.split('\n')
     statistic = statistic[1].split(' ')
     statistic = int(statistic[1])
-    print('statistic= ', statistic)
-    assert statistic > 0, "Нет данных Статистика"
+    assert statistic > 0
 
     # Проверяем, что количество строк в таблице равно числу, записанному в статистике
-    # count_table - количество строк таблицы определим по количеству элементов с атрибутом img
-    images = wait.until(
-        EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'IMG')))
+    images = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'IMG')))
     count_table = len(images) - 1
-    print('count_table =', count_table)
-    assert count_table >= 0, "Таблица 'Мои питомцы' - пустая"
-    assert statistic == count_table, \
-        'Данные Статистика не совпадают с количеством строк в таблице Мои питомцы'
+    assert count_table >= 0
+    assert statistic == count_table
 
     # Назначаем переменную для подсчёта количества питомцев пользователя с фотографией
     pytest.driver.implicitly_wait(5)
@@ -104,54 +95,41 @@ def test_my_pets():
     # определяем количество питомцев с фотографией по непустому значению атрибута scr
     for i in range(count_table):
         photo = images[i].get_attribute('src')
-        if photo != '' \
-                and photo != 'https://petfriends.skillfactory.ru/static/images/upload2.jpg' and photo != '(unknown)':
+        if photo != '' and photo != '(unknown)':
             photo_presence += 1
         else:
             photo_presence = photo_presence
 
-    print('photo_presence=', photo_presence, ' count_table // 2 =', count_table // 2)
-
     # Проверяем, что как минимум половина всех питомцев имеют фотографию
-    assert photo_presence >= (count_table // 2), 'Недостаточно питомцев с фотографиями'
+    assert photo_presence >= (count_table // 2)
 
     # Проверяем, что у питомцев заполнены все данные: имя, тип, возраст
-    # Формируем массив со всеми данными питомцев.
     my_list = []
-    # Формируем массив только с именами питомцев
     my_names = []
 
     # постоянная часть в Xpath
-    cXpath = '//*[@id="all_my_pets"]/table/tbody/tr['
+    xxpath = '//*[@id="all_my_pets"]/table/tbody/tr['
     for i in range(1, count_table + 1):
-        stroka = ''
+        line = ''
         pytest.driver.implicitly_wait(5)
-        name = pytest.driver.find_element(By.XPATH, cXpath + str(i) + "]/td[1]").text
+        name = pytest.driver.find_element(By.XPATH, xxpath + str(i) + "]/td[1]").text
         assert name != '', 'У питомца отсутствует имя'
-        stroka += name
-        my_names.append(stroka)
-        tip = pytest.driver.find_element(By.XPATH, cXpath + str(i) + "]/td[2]").text
+        line += name
+        my_names.append(line)
+        tip = pytest.driver.find_element(By.XPATH, xxpath + str(i) + "]/td[2]").text
         assert tip != '' and tip != 'None', 'У питомца отсутствует порода'
-        stroka += tip
-        age = pytest.driver.find_element(By.XPATH, cXpath + str(i) + "]/td[3]").text
+        line += tip
+        age = pytest.driver.find_element(By.XPATH, xxpath + str(i) + "]/td[3]").text
         assert age != '' and age != 'None лет' and age != ' лет', 'У питомца отсутствует возраст'
-        stroka += age
-        my_list.append(stroka)
-    print(my_list)
-    print(my_names)
+        line += age
+        my_list.append(line)
     assert my_list != [], 'Массив пустой'
     assert my_names != [], 'Массив имён пустой'
 
     # Проверяем, что в списке нет повторяющейся информации о питомцах (имя, порода, возраст)
-    # Для этого сформируем новый массив из уникальных строк массива my_list.
-    # Если длина массива осталась прежней, значит нет повторяющихся строк.
     my_set = set(my_list)
-    print('my_set=', my_set, ' len(my_set)=', len(my_set))
-    assert len(my_set) == count_table, 'В списке есть повторяющаяся информация о питомцах'
+    assert len(my_set) == count_table
 
     # Проверяем, что в списке нет повторяющихся имён питомцев
-    # Для этого сформируем новый массив из уникальных строк массива my_names.
-    # Если длина массива осталась прежней, значит нет повторяющихся имён.
     my_set_names = set(my_names)
-    print('my_set_names=', my_set_names, ' len(my_set_names)=', len(my_set_names))
-    assert len(my_set_names) == count_table, 'В списке есть повторяющиеся имена питомцев'
+    assert len(my_set_names) == count_table
