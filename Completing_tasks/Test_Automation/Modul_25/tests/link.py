@@ -11,6 +11,7 @@ all_card_deck_descriptions = '.card-deck .card-text'
 
 my_pets = 'a[href="/my_pets"]'
 profile_statistics = '.\\.col-sm-4.left'
+CONSTANT_XPATH = '//*[@id="all_my_pets"]/table/tbody/tr['
 
 valid_email = 'skillfaktory.qap66@gmail.com'
 valid_password = '7370377'

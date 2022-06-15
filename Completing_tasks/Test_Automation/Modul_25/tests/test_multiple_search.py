@@ -44,7 +44,7 @@ def test_all_pets():
         name = names[i].text
         image = images[i].get_attribute('src')
         desc = descriptions[i].text
-        assert image != '' and image != '(unknown)'
+        assert image != '' and image != 'unknown'
         assert name != '', "Нет имени"
         assert desc != '' and desc != 'None, None лет'
         assert ',' in desc
@@ -108,23 +108,23 @@ def test_my_pets():
     my_names = []
 
     # постоянная часть в Xpath
-    xxpath = '//*[@id="all_my_pets"]/table/tbody/tr['
+    x_path = CONSTANT_XPATH
     for i in range(1, count_table + 1):
         line = ''
         pytest.driver.implicitly_wait(5)
-        name = pytest.driver.find_element(By.XPATH, xxpath + str(i) + "]/td[1]").text
+        name = pytest.driver.find_element(By.XPATH, x_path + str(i) + "]/td[1]").text
         assert name != '', 'У питомца отсутствует имя'
         line += name
         my_names.append(line)
-        tip = pytest.driver.find_element(By.XPATH, xxpath + str(i) + "]/td[2]").text
-        assert tip != '' and tip != 'None', 'У питомца отсутствует порода'
+        tip = pytest.driver.find_element(By.XPATH, x_path + str(i) + "]/td[2]").text
+        assert tip != '' and tip != 'None'
         line += tip
-        age = pytest.driver.find_element(By.XPATH, xxpath + str(i) + "]/td[3]").text
-        assert age != '' and age != 'None лет' and age != ' лет', 'У питомца отсутствует возраст'
+        age = pytest.driver.find_element(By.XPATH, x_path + str(i) + "]/td[3]").text
+        assert age != '' and age != 'None лет' and age != ' лет'
         line += age
         my_list.append(line)
-    assert my_list != [], 'Массив пустой'
-    assert my_names != [], 'Массив имён пустой'
+    assert my_list != []
+    assert my_names != []
 
     # Проверяем, что в списке нет повторяющейся информации о питомцах (имя, порода, возраст)
     my_set = set(my_list)
