@@ -9,9 +9,8 @@ all_card_deck_image = '.card-deck .card-img-top'
 all_card_deck_names = '.card-deck .card-title'
 all_card_deck_descriptions = '.card-deck .card-text'
 
-# my_pets_css_selector =
-# my_pets
-# my_pets
+my_pets = 'a[href="/my_pets"]'
+profile_statistics = '.\\.col-sm-4.left'
 
 valid_email = 'skillfaktory.qap66@gmail.com'
 valid_password = '7370377'
