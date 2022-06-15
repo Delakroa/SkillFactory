@@ -44,8 +44,8 @@ def test_all_pets():
         name = names[i].text
         image = images[i].get_attribute('src')
         desc = descriptions[i].text
-        assert image != '' and image != 'unknown'
-        assert name != '', "Нет имени"
+        assert image != '' and image != '(unknown)'
+        assert name != ''
         assert desc != '' and desc != 'None, None лет'
         assert ',' in desc
         parts = desc.split(",")
