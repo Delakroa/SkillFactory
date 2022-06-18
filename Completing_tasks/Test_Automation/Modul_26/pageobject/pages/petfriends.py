@@ -3,9 +3,9 @@
 
 import os,pickle
 
-from pages.base import WebPage
-from pages.elements import WebElement
-from pages.elements import ManyWebElements
+from pageobject.pages.base import WebPage
+from pageobject.pages.elements import WebElement
+from pageobject.pages.elements import ManyWebElements
 
 
 class MainPage(WebPage):
