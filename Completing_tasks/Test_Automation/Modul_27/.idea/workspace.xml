@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b0ed51d-16fa-4f85-a240-7dca9d0b0925" name="Changes" comment="добавил тесты" />
+    <list default="true" id="9b0ed51d-16fa-4f85-a240-7dca9d0b0925" name="Changes" comment="добавил cookie" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655551781160</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="добавил cookie">
+      <created>1655552025204</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1655552025204</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -158,6 +165,7 @@
     <MESSAGE value="refactoring" />
     <MESSAGE value="Сменил импорты" />
     <MESSAGE value="добавил тесты" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил тесты" />
+    <MESSAGE value="добавил cookie" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил cookie" />
   </component>
 </project>
