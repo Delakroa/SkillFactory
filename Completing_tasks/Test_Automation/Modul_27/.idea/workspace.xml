@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b0ed51d-16fa-4f85-a240-7dca9d0b0925" name="Changes" comment="Изменил страницу сайта">
+    <list default="true" id="9b0ed51d-16fa-4f85-a240-7dca9d0b0925" name="Changes" comment="pytest&#10;pytest-selenium&#10;termcolor&#10;allure-python-commons">
+      <change afterPath="$PROJECT_DIR$/petfriends_qaatomation_page_pattern/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655552674827</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="pytest&#10;pytest-selenium&#10;termcolor&#10;allure-python-commons">
+      <created>1655626389006</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1655626389006</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +184,7 @@
     <MESSAGE value="добавил тесты" />
     <MESSAGE value="добавил cookie" />
     <MESSAGE value="Изменил страницу сайта" />
-    <option name="LAST_COMMIT_MESSAGE" value="Изменил страницу сайта" />
+    <MESSAGE value="pytest&#10;pytest-selenium&#10;termcolor&#10;allure-python-commons" />
+    <option name="LAST_COMMIT_MESSAGE" value="pytest&#10;pytest-selenium&#10;termcolor&#10;allure-python-commons" />
   </component>
 </project>
