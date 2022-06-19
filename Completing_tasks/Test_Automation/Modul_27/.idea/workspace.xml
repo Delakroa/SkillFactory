@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b0ed51d-16fa-4f85-a240-7dca9d0b0925" name="Changes" comment="добавил cookie" />
+    <list default="true" id="9b0ed51d-16fa-4f85-a240-7dca9d0b0925" name="Changes" comment="Изменил страницу сайта">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -147,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655552025204</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Изменил страницу сайта">
+      <created>1655552674827</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1655552674827</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,6 +175,7 @@
     <MESSAGE value="Сменил импорты" />
     <MESSAGE value="добавил тесты" />
     <MESSAGE value="добавил cookie" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил cookie" />
+    <MESSAGE value="Изменил страницу сайта" />
+    <option name="LAST_COMMIT_MESSAGE" value="Изменил страницу сайта" />
   </component>
 </project>
