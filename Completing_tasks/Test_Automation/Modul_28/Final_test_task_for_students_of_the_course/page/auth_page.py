@@ -5,7 +5,7 @@ from elements import WebElement
 class AuthPage(WebPage):
 
     def __init__(self, web_driver, url=''):
-        url = 'https://www.ozon.ru/'
+        url = 'https://www.labirint.ru/'
         super().__init__(web_driver, url)
 
     email = WebElement(id='email')    # skillfaktory.qap66@gmail.com
