@@ -15,8 +15,9 @@ of the page in case any test case will fail.
 
 [pages/elements.py](pages/elements.py) contains helper class to define web elements on web pages.
 
-[tests/test_selenium_ozon.py](tests/test_selenium_ozon.py) contains several smoke Web UI tests for Ozon Store 
-(https://www.ozon.ru/)
+[tests/test_selenium_labirint.py](tests/test_selenium_labirint.py) contains several smoke Web UI tests for Labirint.
+py Store 
+(https://www.labirint.ru/)
 
 
 How To Run Tests
