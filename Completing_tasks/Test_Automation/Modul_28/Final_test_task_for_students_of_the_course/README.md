@@ -17,7 +17,7 @@ of the page in case any test case will fail.
 
 [tests/test_selenium_Oscar_Sandbox
 .py](tests/test_selenium_Oscar_Sandbox
-.py) contains several smoke Web UI tests for Labirint.
+.py) contains several smoke Web UI tests for Oscar_Sandbox.
 py Store 
 (https://latest.oscarcommerce.com/ru/catalogue/)
 
