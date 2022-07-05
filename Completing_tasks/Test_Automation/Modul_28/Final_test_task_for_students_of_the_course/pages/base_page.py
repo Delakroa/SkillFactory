@@ -1,5 +1,5 @@
 import math
-from .locators import BasePageLocators
+from locators import BasePageLocators
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
@@ -13,7 +13,7 @@ class BasePage:
         """Инициализация атрибутов класса"""
         self.browser = browser
         self.url = url
-        # self.browser.implicitly_wait(timeout)
+        self.browser.implicitly_wait(timeout)
 
     def should_be_authorized_user(self):
         """Проверка на авторизацию пользователя"""
@@ -64,7 +64,7 @@ class BasePage:
         self.browser.get(self.url)
 
     def solve_quiz_and_get_code(self):
-        """Решить викторину и получить код"""
+        """Пройти опрос и получить код"""
         alert = self.browser.switch_to.alert
         x = alert.text.split(' ')[2]
         answer = str(math.log(abs((12 * math.sin(float(x))))))

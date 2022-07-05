@@ -2,9 +2,9 @@
 # pytest -v -m login_guest --tb=line --language=en test_main_page.py
 
 import pytest
-from pages.main_page import MainPage
-from pages.login_page import LoginPage
-from pages.basket_page import BasketPage
+from ..pages.main_page import MainPage
+from ..pages.login_page import LoginPage
+from ..pages.basket_page import BasketPage
 
 link = 'http://selenium1py.pythonanywhere.com/'
 login_link = 'http://selenium1py.pythonanywhere.com/en-gb/accounts/login/'

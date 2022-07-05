@@ -3,9 +3,9 @@
 
 import time
 import pytest
-from pages.product_page import ProductPage
-from pages.login_page import LoginPage
-from pages.basket_page import BasketPage
+from Final_test_task_for_students_of_the_course.pages.product_page import ProductPage
+from Final_test_task_for_students_of_the_course.pages.login_page import LoginPage
+from Final_test_task_for_students_of_the_course.pages.basket_page import BasketPage
 
 login_link = 'http://selenium1py.pythonanywhere.com/en-gb/accounts/login/'
 product_link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
@@ -15,7 +15,7 @@ offer_list = [0, 1, 2, 3, 4, 5, 6, pytest.param(7, marks=pytest.mark.xfail), 8, 
 
 
 @pytest.mark.login
-class TestUserAddToBasketFromProductPage():
+class TestUserAddToBasketFromProductPage:
     @pytest.fixture(scope='function', autouse=True)
     def setup(self, browser):
         email = str(time.time()) + '@fakemail.org'
