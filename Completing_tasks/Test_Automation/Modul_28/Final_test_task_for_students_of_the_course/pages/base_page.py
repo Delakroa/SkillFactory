@@ -1,14 +1,18 @@
+#!/usr/bin/python3
+# -*- encoding=utf8 -*-
+
 import math
-from locators import BasePageLocators
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from .locators import BasePageLocators
 
 
 class BasePage:
     """Базовый класс страницы"""
+
     def __init__(self, browser, url, timeout=10):
         """Инициализация атрибутов класса"""
         self.browser = browser
@@ -26,11 +30,13 @@ class BasePage:
 
     def should_be_login_link(self):
         """Проверка ссылки для входа"""
-        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), 'Ссылка для входа не представлена'
+        assert self.is_element_present(
+            *BasePageLocators.LOGIN_LINK), 'Ссылка для входа не представлена'
 
     def guest_can_go_to_basket_page(self):
         """Корзина для гостя"""
-        basket_button = self.browser.find_element(*BasePageLocators.BUSKET_BUTTON)
+        basket_button = self.browser.find_element(
+            *BasePageLocators.BUSKET_BUTTON).click()
         basket_button.click()
 
     def is_element_present(self, how, what):
@@ -44,13 +50,15 @@ class BasePage:
     def is_not_element_present(self, how, what, timeout=4):
         """Элемент отсутствует"""
         try:
-            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+            WebDriverWait(self.browser, timeout).until(
+                EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return True
 
         return False
 
     def is_disappeared(self, how, what, timeout=4):
+        """Пропал"""
         try:
             WebDriverWait(self.browser, timeout, 1, TimeoutException).until_not(
                 EC.presence_of_element_located((how, what)))
@@ -66,8 +74,8 @@ class BasePage:
     def solve_quiz_and_get_code(self):
         """Пройти опрос и получить код"""
         alert = self.browser.switch_to.alert
-        x = alert.text.split(' ')[2]
-        answer = str(math.log(abs((12 * math.sin(float(x))))))
+        value_x = alert.text.split(' ')[2]
+        answer = str(math.log(abs((12 * math.sin(float(value_x))))))
         alert.send_keys(answer)
         alert.accept()
         try:

@@ -1,8 +1,11 @@
+#!/usr/bin/python3
+# -*- encoding=utf8 -*-
+
 from selenium.webdriver.common.by import By
 
 
 class BasePageLocators:
-    """Базовая страница"""
+    """Класс локаторов базовой страницы"""
     LOGIN_LINK = (By.CSS_SELECTOR, '#login_link')
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, '#login_link_inc')
     BUSKET_BUTTON = (By.CSS_SELECTOR, '.basket-mini > span > a')
@@ -10,13 +13,13 @@ class BasePageLocators:
 
 
 class LoginPageLocators:
-    """Страниц входа"""
+    """Класс локаторов страницы входа"""
     LOGIN_FORM = (By.CSS_SELECTOR, '#login_form')
     LOGIN_REGISTER = (By.CSS_SELECTOR, '#register_form')
 
 
 class ProductPageLocators:
-    """Страница продукта"""
+    """Класс локаторов страницы продукта"""
     ADD_TO_BASKET = (By.CSS_SELECTOR, '.btn-add-to-basket')
     PRODUCT_NAME_IN_THE_MESSAGE = (By.CSS_SELECTOR, '#messages div:nth-child(1) strong')
     PRODUCT_NAME_IN_THE_CATALOG = (By.TAG_NAME, 'h1')
@@ -26,13 +29,13 @@ class ProductPageLocators:
 
 
 class BasketPageLocators:
-    """Страница корзины"""
+    """Класс локаторов страницы корзины"""
     PRODUCT_IN_BASKET = (By.CSS_SELECTOR, '.basket-items')
     MESSAGE_BASKET_IS_EMPTY = (By.CSS_SELECTOR, '#content_inner p')
 
 
 class RegisterNewUsersLocators:
-    """Регистрируйте новых пользователей"""
+    """Класс локаторов регистрирующий новых пользователей"""
     EMAIL_REGISTRATION = (By.CSS_SELECTOR, '#id_registration-email')
     PASSWORD_REGISTRATION = (By.CSS_SELECTOR, '#id_registration-password1')
     PASSWORD_REGISTRATION_CONFIRM = (By.CSS_SELECTOR, '#id_registration-password2')
