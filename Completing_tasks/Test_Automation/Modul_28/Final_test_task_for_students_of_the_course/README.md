@@ -8,7 +8,8 @@ pattern with Selenium and Python (PyTest + Selenium).
 Files
 -----
 
-[conftest.py](conftest.py) contains all the required code to catch failed test cases.
+[conftest.py](conftest.py) implements the logic for launching the browser with the specified user language. The 
+default browser language is -en .
 
 [pages/base_page.py](pages/base_page.py) contains PageObject pattern implementation for Python.
 
