@@ -36,7 +36,7 @@ class BasePage:
     def guest_can_go_to_basket_page(self):
         """Корзина для гостя"""
         basket_button = self.browser.find_element(
-            *BasePageLocators.BUSKET_BUTTON).click()
+            *BasePageLocators.BASKET_BUTTON).click()
         basket_button.click()
 
     def is_element_present(self, how, what):
