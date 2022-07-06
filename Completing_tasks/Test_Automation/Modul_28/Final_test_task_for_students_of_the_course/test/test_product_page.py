@@ -35,7 +35,7 @@ class TestUser:
 
     @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
-        """тестовый пользователь может добавить товар в корзину"""
+        """Тестовый пользователь может добавить товар в корзину"""
         product_page = ProductPage(browser, PRODUCT_LINK)
         product_page.open()
         product_page.guest_can_add_product_to_basket()
