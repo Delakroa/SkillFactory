@@ -8,8 +8,7 @@ pattern with Selenium and Python (PyTest + Selenium).
 Files
 -----
 
-[conftest.py](conftest.py) contains all the required code to catch failed test cases and make screenshot
-of the page in case any test case will fail.
+[conftest.py](conftest.py) contains all the required code to catch failed test cases.
 
 [pages/base_page.py](pages/base_page.py) contains PageObject pattern implementation for Python.
 
